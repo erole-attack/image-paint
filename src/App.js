@@ -12,12 +12,17 @@ function App() {
   const [totalWidth, setTotalWidth] = useState(null)
   const [totalHeight, setTotalHeight] = useState(null)
   const [activeColor, setActiveColor] = useState(null)
+  const [mouseIsDown, setMouseIsDown] = useState(false)
 
   const cellWidth = totalWidth / 100
   const totalCellRows = Math.round(totalHeight / cellWidth)
   const totalCellAmount = totalCellRows * 100
 
-  const cellArray = new Array(totalCellAmount || 0).fill(<Square color={ activeColor }/>)
+  const cellArray = new Array(totalCellAmount || 0).fill(<Square color={ activeColor } mouseIsDown={ mouseIsDown }/>)
+
+  const changeMouseStatus = () => {
+    setMouseIsDown(!mouseIsDown)
+  }
 
   useEffect(() => {
     setTotalWidth( window.innerWidth )
@@ -26,7 +31,7 @@ function App() {
 
   return (
     <ContextMenuTrigger id="menu">
-      <div style ={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div style ={{ display: 'flex', flexWrap: 'wrap'  }} onMouseDown={ changeMouseStatus } onMouseUp={ changeMouseStatus }>
           {
             cellArray.map( x => x )
           }
