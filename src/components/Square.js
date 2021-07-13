@@ -9,32 +9,34 @@ const StyledSquare = styled.div`
   background-color: ${ props => props.isPainted ? props.color : 'white' };
 `
 
-function Square(props) {
+function Square( props ) {
 
-  const [color, setColor] = useState('white')
-  const [isPainted, setIsPainted] = useState(false)
+  const [ color, setColor ] = useState( 'white' )
+  const [ isPainted, setIsPainted ] = useState( false )
 
   const paintSquares = ( event ) => {
 
-    if (color !== props.color && props.mouseIsDown) {
-      setColor(props.color) 
-      setIsPainted(true)
-    } else if(color === props.color && props.mouseIsDown) {
-      setColor(props.color)
-      setIsPainted(!isPainted)
+    if ( event.button === 0 ) {
+      if ( color !== props.color && props.mouseIsDown ) {
+        setColor( props.color ) 
+        setIsPainted( true )
+      } else if( color === props.color && props.mouseIsDown ) {
+        setColor( props.color )
+        setIsPainted( !isPainted )
+      }
     }
     
   }
 
   const paintSingleSquare = ( event ) => {
 
-    if (event.button === 0) {
-      if (color !== props.color) {
-        setColor(props.color) 
-        setIsPainted(true)
+    if ( event.button === 0 ) {
+      if ( color !== props.color ) {
+        setColor( props.color ) 
+        setIsPainted( true )
       } else {
-        setColor(props.color)
-        setIsPainted(!isPainted)
+        setColor( props.color )
+        setIsPainted( !isPainted )
       }
     }
     
