@@ -11,7 +11,7 @@ function App() {
 
   const [totalWidth, setTotalWidth] = useState(null)
   const [totalHeight, setTotalHeight] = useState(null)
-  const [activeColor, setActiveColor] = useState(null)
+  const [activeColor, setActiveColor] = useState('purple')
   const [mouseIsDown, setMouseIsDown] = useState(false)
 
   const cellWidth = totalWidth / 100
