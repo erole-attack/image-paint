@@ -15,7 +15,7 @@ function App() {
   const [mouseIsDown, setMouseIsDown] = useState( false )
 
   const cellWidth = totalWidth / 100
-  const totalCellRows = Math.round( totalHeight / cellWidth )
+  const totalCellRows = Math.floor( totalHeight / cellWidth )
   const totalCellAmount = totalCellRows * 100
 
   const cellArray = new Array( totalCellAmount || 0 ).fill( <Square color={ activeColor } mouseIsDown={ mouseIsDown }/> )
