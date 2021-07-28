@@ -6,24 +6,19 @@ const StyledSquare = styled.div`
   width: 1vw;
   height: 1vw;
   box-shadow: 1px 1px 1px black inset;
-  background-color: ${ props => props.isPainted ? props.color : 'white' };
+  background-color: ${ props => props.color };
 `
 
 function Square( props ) {
 
   const [ color, setColor ] = useState( 'white' )
-  const [ isPainted, setIsPainted ] = useState( false )
 
   const paintSquares = ( event ) => {
 
     if ( event.button === 0 ) {
       if ( color !== props.color && props.mouseIsDown ) {
         setColor( props.color ) 
-        setIsPainted( true )
-      } else if( color === props.color && props.mouseIsDown ) {
-        setColor( props.color )
-        setIsPainted( !isPainted )
-      }
+      } 
     }
     
   }
@@ -33,17 +28,15 @@ function Square( props ) {
     if ( event.button === 0 ) {
       if ( color !== props.color ) {
         setColor( props.color ) 
-        setIsPainted( true )
       } else {
-        setColor( props.color )
-        setIsPainted( !isPainted )
+        setColor( 'white' )
       }
     }
     
   }
   
   return (
-    <StyledSquare color={ color } isPainted={ isPainted } onMouseOver={ paintSquares } onMouseDown={ paintSingleSquare }/>
+    <StyledSquare color={ color } onMouseOver={ paintSquares } onMouseDown={ paintSingleSquare }/>
   )
  }
  
