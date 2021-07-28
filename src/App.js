@@ -9,16 +9,21 @@ function App() {
     setActiveColor( data.color )
   }
 
-  const [totalWidth, setTotalWidth] = useState( null )
-  const [totalHeight, setTotalHeight] = useState( null )
-  const [activeColor, setActiveColor] = useState( 'purple')
-  const [mouseIsDown, setMouseIsDown] = useState( false )
+  const [ totalWidth, setTotalWidth ] = useState( null )
+  const [ totalHeight, setTotalHeight ] = useState( null )
+  const [ activeColor, setActiveColor ] = useState( 'purple')
+  const [ mouseIsDown, setMouseIsDown ] = useState( false )
+  const [ erasing, setErasing ] = useState( false )
 
   const cellWidth = totalWidth / 100
   const totalCellRows = Math.floor( totalHeight / cellWidth )
   const totalCellAmount = totalCellRows * 100
 
-  const cellArray = new Array( totalCellAmount || 0 ).fill( <Square color={ activeColor } mouseIsDown={ mouseIsDown }/> )
+  const handleErase= ( value ) => {
+    setErasing( value )
+  }
+
+  const cellArray = new Array( totalCellAmount-100 || 0 ).fill( <Square color={ activeColor } mouseIsDown={ mouseIsDown } setErasing={ handleErase } isErasing={ erasing } bottomRow={ false } /> ).concat( new Array( 100 ).fill( <Square color={ activeColor } mouseIsDown={ mouseIsDown } setErasing={ handleErase } isErasing={ erasing } bottomRow={ true }/> ) )
 
   const changeMouseStatus = () => {
     setMouseIsDown(!mouseIsDown)
